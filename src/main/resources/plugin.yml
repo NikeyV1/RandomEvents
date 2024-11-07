@@ -7,3 +7,5 @@ website: https://github.com/NikeyV1
 commands:
   event:
     description: Start event
+  ffa:
+    description: FFA coomand

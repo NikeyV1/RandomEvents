@@ -2,3 +2,19 @@ Treasure Hunt:
   Min-Players: 3
   Max-Attempts: 50
   Spawn-Radius: 500
+Ability Boost:
+  Min-Players: 2
+  Duration: 1200
+FFA:
+  Start-Countdown: 60
+  Min-Players: 3
+  World: FFA
+  TeleportLocations:
+    - "6,-60,3"
+    - "8,-60,-6"
+    - "6,-60,-16"
+    - "7,-60,-16"
+    - "-21,-60,-17"
+    - "-23,-60,-5"
+    - "-19,-60,6"
+    - "-4,-60,7"

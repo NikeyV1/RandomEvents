@@ -49,7 +49,7 @@ public class TreasureHuntLootTable implements LootTable {
     }
 
     @Override
-    public @NotNull Collection<ItemStack> populateLoot(Random random, @NotNull LootContext lootContext) {
+    public @NotNull Collection<ItemStack> populateLoot(Random random, LootContext lootContext) {
         List<ItemStack> loot = new ArrayList<>();
 
         for (LootItem lootItem : lootItems) {

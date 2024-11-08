@@ -8,4 +8,4 @@ commands:
   event:
     description: Start event
   ffa:
-    description: FFA coomand
+    description: FFA command

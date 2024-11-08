@@ -7,6 +7,7 @@ import de.nikey.randomEvents.Events.AbilityBoost;
 import de.nikey.randomEvents.Events.TreasureHunt;
 import de.nikey.randomEvents.FFA.FFAIngame;
 import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.Loottables.FFALootTable;
 import de.nikey.randomEvents.Loottables.TreasureHuntLootTable;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -25,6 +26,7 @@ public final class RandomEvents extends JavaPlugin {
         plugin = this;
         saveDefaultConfig();
         TreasureHunt.lootTable = new TreasureHuntLootTable(new NamespacedKey(this, "treasure_hunt_loot"));
+        FFAIngame.lootTable = new FFALootTable(new NamespacedKey(this,"ffa_loottable"));
         startEvent();
         loadWord();
         getCommand("Event").setExecutor(new EventCommand());

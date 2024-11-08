@@ -77,7 +77,9 @@ public class FFA {
                 player.removePotionEffect(effect.getType());
             }
 
-            String[] locData = teleportLocations.get((int) (Math.random() * teleportLocations.size())).split(",");
+            int randomIndex = (int) (Math.random() * teleportLocations.size());
+            String[] locData = teleportLocations.remove(randomIndex).split(",");
+
             double x = Double.parseDouble(locData[0]);
             double y = Double.parseDouble(locData[1]);
             double z = Double.parseDouble(locData[2]);
@@ -88,7 +90,7 @@ public class FFA {
             FFA_API.playerItems.put(player,player.getInventory().getContents());
             player.getInventory().clear();
             player.setGameMode(GameMode.ADVENTURE);
-            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,40,4));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,20*5,4));
             player.setHealth(20);
             player.setSaturation(20);
             player.setFoodLevel(20);
@@ -124,12 +126,16 @@ public class FFA {
         sword.addEnchantment(Enchantment.SHARPNESS, 5);
         sword.addEnchantment(Enchantment.SWEEPING_EDGE, 3);
 
+        //Essen
+        ItemStack food = new ItemStack(Material.COOKED_BEEF);
+
         // Spieler die Ausrüstung geben
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
         player.getInventory().setLeggings(leggings);
         player.getInventory().setBoots(boots);
         player.getInventory().addItem(sword);
+        player.getInventory().addItem(food);
     }
 
 }

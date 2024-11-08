@@ -69,6 +69,12 @@ public class FFA {
             return;
         }
 
+        if (FFA_API.queue.size() < EventsAPI.getFFAMinPlayer()){
+            Component message = Component.text("Not enough players in the queue to start the tournament").color(NamedTextColor.RED);
+            Bukkit.broadcast(message); 
+            return;
+        }
+
         for (Player player : FFA_API.queue) {
             FFA_API.location.put(player,player.getLocation());
 

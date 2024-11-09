@@ -2,15 +2,10 @@ package de.nikey.randomEvents.Events;
 
 import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.API.FishingAPI;
-import de.nikey.randomEvents.FFA.FFA_API;
 import de.nikey.randomEvents.RandomEvents;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,6 +24,9 @@ public class FishingContest implements Listener {
 
         FishingAPI.isFishingContestActive = true;
         Bukkit.broadcast(Component.text("The Fishing Contest has started! Catch as many rare fish and treasures as you can!", NamedTextColor.GOLD));
+        for (Player players : Bukkit.getOnlinePlayers()) {
+            players.playSound(players, Sound.ENTITY_EXPERIENCE_ORB_PICKUP,1,1);
+        }
 
         new BukkitRunnable() {
             @Override

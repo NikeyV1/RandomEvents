@@ -21,3 +21,11 @@ FFA:
 FishingContest:
   Time: 5
   Min-Players: 4
+TaskEvent:
+  Min-Players: 3
+  Min-Items: 3
+  Max-Items: 7
+  Min-Mobs: 1
+  Max-Mobs: 12
+  TasksAmount: 3
+  Time: 5

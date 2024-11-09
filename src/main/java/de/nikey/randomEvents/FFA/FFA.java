@@ -24,7 +24,7 @@ public class FFA {
         for (Player player : Bukkit.getOnlinePlayers()) {
             FFA_API.invited.add(player);
             Component message = Component.text("A FFA tournament has started click here to join").color(NamedTextColor.GOLD).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND,"/ffa join"));
-
+            player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP,1,1);
             player.sendMessage(message);
         }
 
@@ -71,6 +71,7 @@ public class FFA {
 
         if (FFA_API.queue.size() < EventsAPI.getFFAMinPlayer()){
             Component message = Component.text("Not enough players in the queue to start the tournament").color(NamedTextColor.RED);
+            FFA_API.queue.clear();
             Bukkit.broadcast(message); 
             return;
         }
@@ -96,7 +97,7 @@ public class FFA {
             FFA_API.playerItems.put(player.getName(),player.getInventory().getContents());
             player.getInventory().clear();
             player.setGameMode(GameMode.ADVENTURE);
-            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,20*5,4));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,100,4));
             player.setHealth(20);
             player.setSaturation(20);
             player.setFoodLevel(20);

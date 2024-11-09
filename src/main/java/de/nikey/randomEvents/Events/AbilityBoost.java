@@ -2,6 +2,7 @@ package de.nikey.randomEvents.Events;
 
 import de.nikey.randomEvents.API.EventsAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -39,6 +40,9 @@ public class AbilityBoost {
             Random random = new Random();
             PotionEffectType randomEffect = POSITIVE_EFFECTS.get(random.nextInt(POSITIVE_EFFECTS.size()));
             int effectLevel = 1; // Effect level (e.g., level 1 corresponds to level II in Minecraft)
+            for (Player players : Bukkit.getOnlinePlayers()) {
+                players.playSound(players, Sound.ENTITY_EXPERIENCE_ORB_PICKUP,1,1);
+            }
 
             // Apply the random effect for the specified duration
             player.addPotionEffect(new PotionEffect(randomEffect, EventsAPI.getAbilityBoostDuration(), effectLevel));

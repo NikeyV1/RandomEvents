@@ -2,6 +2,7 @@ package de.nikey.randomEvents;
 
 import de.nikey.randomEvents.Commands.EventCommand;
 import de.nikey.randomEvents.Events.FishingContest;
+import de.nikey.randomEvents.Events.TaskEvent;
 import de.nikey.randomEvents.FFA.FFA;
 import de.nikey.randomEvents.FFA.FFACommand;
 import de.nikey.randomEvents.Events.AbilityBoost;
@@ -37,6 +38,7 @@ public final class RandomEvents extends JavaPlugin {
         PluginManager manager = Bukkit.getPluginManager();
         manager.registerEvents(new FFAIngame(),this);
         manager.registerEvents(new FishingContest(),this);
+        manager.registerEvents(new TaskEvent(),this);
 
     }
 
@@ -50,6 +52,7 @@ public final class RandomEvents extends JavaPlugin {
         WorldCreator creator = new WorldCreator(world);
 
         Bukkit.createWorld(creator);
+        getLogger().info("World was created");
     }
 
     private void startEvent() {
@@ -61,12 +64,19 @@ public final class RandomEvents extends JavaPlugin {
                 int i = random.nextInt(40);
                 if (i == 2 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTreasureHuntMinPlayer()) {
                     TreasureHunt.startTreasureHunt();
+                    getLogger().info("Event: Starting Treasure Hunt");
                 }else if (i == 5 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getAbilityBoostMinPlayer()) {
                     AbilityBoost.activateAbilityBoost();
+                    getLogger().info("Event: Starting Ability Boost");
                 }else if (i == 8 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getFFAMinPlayer()) {
                     FFA.sendInvite();
+                    getLogger().info("Event: Starting FFA");
                 }else if (i == 9 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getFishingContestMinPlayer()) {
                     FishingContest.startFishingContest();
+                    getLogger().info("Event: Starting Fishing Contest");
+                }else if (i == 10 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTaskMinPlayers()) {
+                    TaskEvent.startEvent();
+                    getLogger().info("Event: Starting Task Event");
                 }
             }
         }.runTaskTimer(this, 0L, 20 * 600);

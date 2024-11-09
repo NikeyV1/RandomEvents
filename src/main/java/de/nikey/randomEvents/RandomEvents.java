@@ -1,12 +1,13 @@
 package de.nikey.randomEvents;
 
 import de.nikey.randomEvents.Commands.EventCommand;
+import de.nikey.randomEvents.Events.FishingContest;
 import de.nikey.randomEvents.FFA.FFA;
 import de.nikey.randomEvents.FFA.FFACommand;
 import de.nikey.randomEvents.Events.AbilityBoost;
 import de.nikey.randomEvents.Events.TreasureHunt;
 import de.nikey.randomEvents.FFA.FFAIngame;
-import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.Loottables.FFALootTable;
 import de.nikey.randomEvents.Loottables.TreasureHuntLootTable;
 import org.bukkit.Bukkit;
@@ -35,6 +36,7 @@ public final class RandomEvents extends JavaPlugin {
 
         PluginManager manager = Bukkit.getPluginManager();
         manager.registerEvents(new FFAIngame(),this);
+        manager.registerEvents(new FishingContest(),this);
 
     }
 
@@ -56,13 +58,15 @@ public final class RandomEvents extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                int i = random.nextInt(30);
+                int i = random.nextInt(40);
                 if (i == 2 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTreasureHuntMinPlayer()) {
                     TreasureHunt.startTreasureHunt();
                 }else if (i == 5 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getAbilityBoostMinPlayer()) {
                     AbilityBoost.activateAbilityBoost();
                 }else if (i == 8 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getFFAMinPlayer()) {
                     FFA.sendInvite();
+                }else if (i == 9 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getFishingContestMinPlayer()) {
+                    FishingContest.startFishingContest();
                 }
             }
         }.runTaskTimer(this, 0L, 20 * 600);

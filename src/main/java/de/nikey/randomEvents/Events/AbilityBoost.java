@@ -1,6 +1,6 @@
 package de.nikey.randomEvents.Events;
 
-import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.API.EventsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;

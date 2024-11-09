@@ -1,14 +1,12 @@
 package de.nikey.randomEvents.Events;
 
-import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.Loottables.TreasureHuntLootTable;
 import de.nikey.randomEvents.RandomEvents;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.loot.LootContext;
 import org.bukkit.scheduler.BukkitRunnable;

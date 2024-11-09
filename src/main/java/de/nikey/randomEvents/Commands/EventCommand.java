@@ -1,9 +1,10 @@
 package de.nikey.randomEvents.Commands;
 
 import de.nikey.randomEvents.Events.AbilityBoost;
+import de.nikey.randomEvents.Events.FishingContest;
 import de.nikey.randomEvents.Events.TreasureHunt;
 import de.nikey.randomEvents.FFA.FFA;
-import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.API.EventsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,6 +18,8 @@ public class EventCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("Event")) {
             if (sender instanceof Player || sender instanceof ConsoleCommandSender) {
+                if (!sender.isOp())return true;
+
                 if (args[0].equalsIgnoreCase("TreasureHunt")) {
                     if (Bukkit.getOnlinePlayers().size() < EventsAPI.getTreasureHuntMinPlayer()) {
                         sender.sendMessage("§cNot enough players online");
@@ -37,6 +40,12 @@ public class EventCommand implements CommandExecutor {
                         return true;
                     }
                     FFA.sendInvite();
+                }else if (args[0].equalsIgnoreCase("FishingContest")) {
+                    if (Bukkit.getOnlinePlayers().size() < EventsAPI.getFishingContestMinPlayer()) {
+                        sender.sendMessage("§cNot enough players online");
+                        return true;
+                    }
+                    FishingContest.startFishingContest();
                 }
             }
             return true;

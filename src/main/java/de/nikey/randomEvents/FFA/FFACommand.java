@@ -1,6 +1,6 @@
 package de.nikey.randomEvents.FFA;
 
-import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.API.EventsAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;

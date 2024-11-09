@@ -1,4 +1,4 @@
-package de.nikey.randomEvents.General;
+package de.nikey.randomEvents.API;
 
 import de.nikey.randomEvents.RandomEvents;
 
@@ -42,5 +42,13 @@ public class EventsAPI {
 
     public static List<String> getFFATeleportLocations() {
         return RandomEvents.getPlugin().getConfig().getStringList("FFA.TeleportLocations");
+    }
+
+    public static int getFishingContestMinPlayer() {
+        return RandomEvents.getPlugin().getConfig().getInt("FishingContest.Min-Players");
+    }
+
+    public static int getFishingContestTime() {
+        return RandomEvents.getPlugin().getConfig().getInt("FishingContest.Time");
     }
 }

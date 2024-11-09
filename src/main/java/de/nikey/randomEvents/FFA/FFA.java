@@ -1,6 +1,6 @@
 package de.nikey.randomEvents.FFA;
 
-import de.nikey.randomEvents.General.EventsAPI;
+import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.RandomEvents;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -76,9 +76,9 @@ public class FFA {
         }
 
         for (Player player : FFA_API.queue) {
-            FFA_API.location.put(player,player.getLocation());
+            FFA_API.location.put(player.getName(),player.getLocation());
 
-            FFA_API.playerEffects.put(player, player.getActivePotionEffects());
+            FFA_API.playerEffects.put(player.getName(), player.getActivePotionEffects());
             for (PotionEffect effect : player.getActivePotionEffects()) {
                 player.removePotionEffect(effect.getType());
             }
@@ -92,8 +92,8 @@ public class FFA {
             Location teleportLocation = new Location(ffaWorld, x, y, z);
             player.teleport(teleportLocation);
             player.sendMessage(Component.text("FFA is starting. Good luck!").color(NamedTextColor.GREEN));
-            FFA_API.ingame.add(player);
-            FFA_API.playerItems.put(player,player.getInventory().getContents());
+            FFA_API.ingame.add(player.getName());
+            FFA_API.playerItems.put(player.getName(),player.getInventory().getContents());
             player.getInventory().clear();
             player.setGameMode(GameMode.ADVENTURE);
             player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE,20*5,4));

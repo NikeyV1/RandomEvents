@@ -80,6 +80,7 @@ public class TaskEvent implements Listener {
                 if (kills >= TaskAPI.requiredMobKills) {
                     Bukkit.broadcast(Component.text("Mob-Kill-Task completed by "+ player.getName()).color(NamedTextColor.GRAY));
                     player.getWorld().dropItem(player.getLocation(),giveRandomLoot());
+                    giveRandomExp(player);
                     TaskAPI.tasksCompleted = TaskAPI.tasksCompleted+1;
                     if (TaskAPI.tasksCompleted < EventsAPI.getTaskAmount()) {
                         initializeRandomTask();
@@ -105,6 +106,7 @@ public class TaskEvent implements Listener {
             if (itemCount >= TaskAPI.requiredItems) {
                 Bukkit.broadcast(Component.text("Item-Collect-Task completed by "+ player.getName()).color(NamedTextColor.GRAY));
                 player.getWorld().dropItem(player.getLocation(),giveRandomLoot());
+                giveRandomExp(player);
                 TaskAPI.tasksCompleted = TaskAPI.tasksCompleted+1;
                 if (TaskAPI.tasksCompleted < EventsAPI.getTaskAmount()) {
                     initializeRandomTask();
@@ -118,6 +120,12 @@ public class TaskEvent implements Listener {
             }
         }
     }
+
+    public static void giveRandomExp(Player player) {
+        Random random = new Random();
+        player.giveExp(random.nextInt(300),false);
+    }
+
 
     public static ItemStack giveRandomLoot() {
         // Loot-Listen (Material, Menge, Chance)

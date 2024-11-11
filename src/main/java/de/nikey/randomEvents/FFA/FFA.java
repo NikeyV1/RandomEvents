@@ -3,6 +3,7 @@ package de.nikey.randomEvents.FFA;
 import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.RandomEvents;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.*;
@@ -36,6 +37,7 @@ public class FFA {
                 // Countdown-Benachrichtigung nur bei spezifischen Zeiten senden
                 if (timeLeft == 30 || timeLeft == 10 || timeLeft == 5 || timeLeft == 3) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
+                        FFA_API.invited.add(player);
                         Component countdownMessage = Component.text(baseMessage + timeLeft + " seconds! Click here to join")
                                 .color(NamedTextColor.GOLD)
                                 .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/ffa join"));
@@ -76,7 +78,15 @@ public class FFA {
             return;
         }
 
+
         for (Player player : FFA_API.queue) {
+            if (FFA_API.location.containsKey(player.getName()) || FFA_API.playerItems.containsKey(player.getName())) {
+                TextComponent message = Component.text("An Error occurred: Already ingame");
+                TextComponent m = Component.text("Please contact an admin");
+                player.sendMessage(message);
+                player.sendMessage(m);
+                return;
+            }
             FFA_API.location.put(player.getName(),player.getLocation());
 
             FFA_API.playerEffects.put(player.getName(), player.getActivePotionEffects());
@@ -94,6 +104,7 @@ public class FFA {
             player.teleport(teleportLocation);
             player.sendMessage(Component.text("FFA is starting. Good luck!").color(NamedTextColor.GREEN));
             FFA_API.ingame.add(player.getName());
+
             FFA_API.playerItems.put(player.getName(),player.getInventory().getContents());
             player.getInventory().clear();
             player.setGameMode(GameMode.ADVENTURE);

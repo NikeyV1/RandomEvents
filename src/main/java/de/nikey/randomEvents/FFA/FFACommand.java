@@ -23,7 +23,7 @@ public class FFACommand implements CommandExecutor, TabCompleter {
                     if (FFA_API.invited.contains(player)) {
                         int size = EventsAPI.getFFATeleportLocations().size();
                         if (FFA_API.queue.size() < size) {
-                            FFA_API.queue.add(player);
+                            if (!FFA_API.queue.contains(player))FFA_API.queue.add(player);
                             player.sendMessage(Component.text("You joined the queue").color(NamedTextColor.YELLOW));
                         }else {
                             player.sendMessage(Component.text("The queue is full").color(NamedTextColor.RED));

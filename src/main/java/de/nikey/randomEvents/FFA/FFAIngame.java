@@ -11,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -41,10 +40,6 @@ public class FFAIngame implements Listener {
         }
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onPlayerJoin(PlayerJoinEvent event) {
-
-    }
 
     @EventHandler(ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
@@ -163,7 +158,11 @@ public class FFAIngame implements Listener {
             cumulativeWeight += lootChances.get(i);
             if (randomValue <= cumulativeWeight) {
                 ItemStack reward = new ItemStack(lootMaterials.get(i), lootAmounts.get(i));
-                player.getInventory().addItem(reward);
+                if (player.getInventory().firstEmpty() == -1) {
+                    player.getWorld().dropItem(player.getLocation(),reward);
+                }else {
+                    player.getInventory().addItem(reward);
+                }
                 String itemName = reward.getType().name().replace("_", " ").toLowerCase(); // Formatierung des Item-Namens
                 Component message = Component.text("You have received "  + itemName + "!")
                         .color(TextColor.color(184, 130, 44));

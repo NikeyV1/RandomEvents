@@ -61,7 +61,7 @@ public final class RandomEvents extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                int i = random.nextInt(40);
+                int i = random.nextInt(45);
                 if (i == 2 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTreasureHuntMinPlayer()) {
                     TreasureHunt.startTreasureHunt();
                     getLogger().info("Event: Starting Treasure Hunt");

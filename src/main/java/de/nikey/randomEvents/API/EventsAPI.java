@@ -51,6 +51,9 @@ public class EventsAPI {
     public static int getFishingContestTime() {
         return RandomEvents.getPlugin().getConfig().getInt("FishingContest.Time");
     }
+    public static int getFishingContestChance() {
+        return RandomEvents.getPlugin().getConfig().getInt("FishingContest.Drop-Chance");
+    }
     public static int getTaskMinPlayers() {
         return RandomEvents.getPlugin().getConfig().getInt("TaskEvent.Min-Players");
     }
@@ -72,5 +75,13 @@ public class EventsAPI {
     }
     public static int getTaskTime() {
         return RandomEvents.getPlugin().getConfig().getInt("TaskEvent.Time");
+    }
+
+    public static int getLootLamaMinPlayers() {
+        return RandomEvents.getPlugin().getConfig().getInt("LootLama.Min-Players");
+    }
+
+    public static int getLootLamaAmount() {
+        return RandomEvents.getPlugin().getConfig().getInt("LootLama.Amount");
     }
 }

@@ -4,7 +4,7 @@ Treasure Hunt:
   Spawn-Radius: 500
 Ability Boost:
   Min-Players: 2
-  Duration: 600
+  Duration: 300
 FFA:
   Start-Countdown: 60
   Min-Players: 3
@@ -21,24 +21,15 @@ FFA:
 FishingContest:
   Time: 5
   Min-Players: 4
+  Drop-Chance: 5
 TaskEvent:
   Min-Players: 3
   Min-Items: 3
   Max-Items: 7
   Min-Mobs: 1
-  Max-Mobs: 12
+  Max-Mobs: 5
   TasksAmount: 3
   Time: 5
-Soccer:
-  Start-Countdown: 60
+LootLama:
   Min-Players: 2
-  World: Soccer
-  TeleportLocations:
-    - "6,-60,3"
-    - "8,-60,-6"
-    - "6,-60,-16"
-    - "7,-60,-16"
-    - "-21,-60,-17"
-    - "-23,-60,-5"
-    - "-19,-60,6"
-    - "-4,-60,7"
+  Amount: 3

@@ -1,12 +1,9 @@
 package de.nikey.randomEvents;
 
 import de.nikey.randomEvents.Commands.EventCommand;
-import de.nikey.randomEvents.Events.FishingContest;
-import de.nikey.randomEvents.Events.TaskEvent;
+import de.nikey.randomEvents.Events.*;
 import de.nikey.randomEvents.FFA.FFA;
 import de.nikey.randomEvents.FFA.FFACommand;
-import de.nikey.randomEvents.Events.AbilityBoost;
-import de.nikey.randomEvents.Events.TreasureHunt;
 import de.nikey.randomEvents.FFA.FFAIngame;
 import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.Loottables.FFALootTable;
@@ -14,6 +11,7 @@ import de.nikey.randomEvents.Loottables.TreasureHuntLootTable;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.WorldCreator;
+import org.bukkit.entity.Llama;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -39,12 +37,18 @@ public final class RandomEvents extends JavaPlugin {
         manager.registerEvents(new FFAIngame(),this);
         manager.registerEvents(new FishingContest(),this);
         manager.registerEvents(new TaskEvent(),this);
+        manager.registerEvents(new LootLama(), this);
 
     }
 
     @Override
     public void onDisable() {
-        
+        for (Llama llama : LootLama.lootLlamas) {
+            if (!llama.isDead()) {
+                llama.remove();
+            }
+        }
+        LootLama.lootLlamas.clear();
     }
 
     private void loadWord() {
@@ -55,6 +59,7 @@ public final class RandomEvents extends JavaPlugin {
         getLogger().info("World was created");
     }
 
+    //Loot lamas event
     private void startEvent() {
         Random random = new Random();
 
@@ -77,6 +82,9 @@ public final class RandomEvents extends JavaPlugin {
                 }else if (i == 10 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTaskMinPlayers()) {
                     TaskEvent.startEvent();
                     getLogger().info("Event: Starting Task Event");
+                }else if (i == 11 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getLootLamaMinPlayers()) {
+                    LootLama.start();
+                    getLogger().info("Event: Starting LootLlama Event");
                 }
             }
         }.runTaskTimer(this, 0L, 20 * 600);

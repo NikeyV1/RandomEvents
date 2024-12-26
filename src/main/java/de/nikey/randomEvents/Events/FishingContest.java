@@ -42,7 +42,7 @@ public class FishingContest implements Listener {
         Random random = new Random();
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH && FishingAPI.isFishingContestActive) {
             int i = random.nextInt(100);
-            if (i <= 4) {
+            if (i <= EventsAPI.getFishingContestChance()) {
                 event.getPlayer().sendMessage(Component.text("You caught a rare drop!").color(NamedTextColor.DARK_GRAY));
                 ItemStack itemStack = giveRandomLoot();
                 Item item = event.getPlayer().getWorld().dropItem(event.getPlayer().getLocation(), itemStack);
@@ -92,11 +92,10 @@ public class FishingContest implements Listener {
         for (int i = 0; i < lootMaterials.size(); i++) {
             cumulativeWeight += lootChances.get(i);
             if (randomValue <= cumulativeWeight) {
-
                 return new ItemStack(lootMaterials.get(i), lootAmounts.get(i));
             }
         }
-        return null;  // Falls keine Auswahl getroffen wird, null zurückgeben
+        return null;
     }
 
 }

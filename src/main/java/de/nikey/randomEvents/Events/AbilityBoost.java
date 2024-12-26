@@ -28,7 +28,6 @@ public class AbilityBoost {
             PotionEffectType.ABSORPTION,        // Absorption
             PotionEffectType.SATURATION,        // Saturation
             PotionEffectType.LUCK,              // Luck
-            PotionEffectType.SLOW_FALLING,      // Slow Falling
             PotionEffectType.CONDUIT_POWER,     // Conduit Power
             PotionEffectType.DOLPHINS_GRACE,    // Dolphin's Grace
             PotionEffectType.HERO_OF_THE_VILLAGE // Hero of the Village

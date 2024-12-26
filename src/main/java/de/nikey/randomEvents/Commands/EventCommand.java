@@ -1,9 +1,6 @@
 package de.nikey.randomEvents.Commands;
 
-import de.nikey.randomEvents.Events.AbilityBoost;
-import de.nikey.randomEvents.Events.FishingContest;
-import de.nikey.randomEvents.Events.TaskEvent;
-import de.nikey.randomEvents.Events.TreasureHunt;
+import de.nikey.randomEvents.Events.*;
 import de.nikey.randomEvents.FFA.FFA;
 import de.nikey.randomEvents.API.EventsAPI;
 import de.nikey.randomEvents.FFA.FFA_API;
@@ -43,6 +40,7 @@ public class EventCommand implements CommandExecutor {
                     }
                     if (args.length == 3 && args[1].equalsIgnoreCase("load")) {
                         Player player = Bukkit.getPlayer(args[2]);
+                        assert player != null;
                         player.getInventory().setContents(FFA_API.playerItems.get(player.getName()));
                     }
                     FFA.sendInvite();
@@ -58,6 +56,12 @@ public class EventCommand implements CommandExecutor {
                         return true;
                     }
                     TaskEvent.startEvent();
+                }else if (args[0].equalsIgnoreCase("LootLama")) {
+                    if (Bukkit.getOnlinePlayers().size() < EventsAPI.getLootLamaMinPlayers()) {
+                        sender.sendMessage("§cNot enough players online");
+                        return true;
+                    }
+                    LootLama.start();
                 }
             }
             return true;

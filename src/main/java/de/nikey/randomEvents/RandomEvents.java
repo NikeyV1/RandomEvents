@@ -38,6 +38,7 @@ public final class RandomEvents extends JavaPlugin {
         manager.registerEvents(new FishingContest(),this);
         manager.registerEvents(new TaskEvent(),this);
         manager.registerEvents(new LootLama(), this);
+        manager.registerEvents(new RandomProjectiles(), this);
 
     }
 
@@ -66,7 +67,7 @@ public final class RandomEvents extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                int i = random.nextInt(45);
+                int i = random.nextInt(50);
                 if (i == 2 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTreasureHuntMinPlayer()) {
                     TreasureHunt.startTreasureHunt();
                     getLogger().info("Event: Starting Treasure Hunt");
@@ -85,6 +86,9 @@ public final class RandomEvents extends JavaPlugin {
                 }else if (i == 11 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getLootLamaMinPlayers()) {
                     LootLama.start();
                     getLogger().info("Event: Starting LootLlama Event");
+                }else if (i == 12 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getRandomProjectilesMinPlayers()) {
+                    RandomProjectiles.start();
+                    getLogger().info("Event: Starting Random Projectiles Event");
                 }
             }
         }.runTaskTimer(this, 0L, 20 * 600);

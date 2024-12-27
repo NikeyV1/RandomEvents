@@ -62,6 +62,12 @@ public class EventCommand implements CommandExecutor {
                         return true;
                     }
                     LootLama.start();
+                }else if (args[0].equalsIgnoreCase("RandomProjectiles")) {
+                    if (Bukkit.getOnlinePlayers().size() < EventsAPI.getRandomProjectilesMinPlayers()) {
+                        sender.sendMessage("§cNot enough players online");
+                        return true;
+                    }
+                    RandomProjectiles.start();
                 }
             }
             return true;

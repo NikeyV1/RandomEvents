@@ -84,4 +84,12 @@ public class EventsAPI {
     public static int getLootLamaAmount() {
         return RandomEvents.getPlugin().getConfig().getInt("LootLama.Amount");
     }
+
+    public static int getRandomProjectilesMinPlayers() {
+        return RandomEvents.getPlugin().getConfig().getInt("RandomProjectiles.Min-Players");
+    }
+
+    public static int getRandomProjectilesTime() {
+        return RandomEvents.getPlugin().getConfig().getInt("RandomProjectiles.Time");
+    }
 }

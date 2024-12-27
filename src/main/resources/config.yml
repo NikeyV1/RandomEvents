@@ -33,3 +33,6 @@ TaskEvent:
 LootLama:
   Min-Players: 2
   Amount: 3
+RandomProjectiles:
+  Min-Players: 3
+  Time: 5

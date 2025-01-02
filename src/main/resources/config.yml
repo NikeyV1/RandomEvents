@@ -36,3 +36,7 @@ LootLama:
 RandomProjectiles:
   Min-Players: 3
   Time: 5
+DoubleOre:
+  Min-Players: 2
+  Duration: 5
+

@@ -68,6 +68,12 @@ public class EventCommand implements CommandExecutor {
                         return true;
                     }
                     RandomProjectiles.start();
+                }else if (args[0].equalsIgnoreCase("DoubleOre")) {
+                    if (Bukkit.getOnlinePlayers().size() < EventsAPI.getDoubleOreMinPlayers()) {
+                        sender.sendMessage("§cNot enough players online");
+                        return true;
+                    }
+                    DoubleOre.activateDoubleOre();
                 }
             }
             return true;

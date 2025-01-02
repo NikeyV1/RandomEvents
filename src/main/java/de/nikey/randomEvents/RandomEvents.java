@@ -39,6 +39,7 @@ public final class RandomEvents extends JavaPlugin {
         manager.registerEvents(new TaskEvent(),this);
         manager.registerEvents(new LootLama(), this);
         manager.registerEvents(new RandomProjectiles(), this);
+        manager.registerEvents(new DoubleOre(), this);
 
     }
 
@@ -67,7 +68,7 @@ public final class RandomEvents extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                int i = random.nextInt(50);
+                int i = random.nextInt(55);
                 if (i == 2 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getTreasureHuntMinPlayer()) {
                     TreasureHunt.startTreasureHunt();
                     getLogger().info("Event: Starting Treasure Hunt");
@@ -89,6 +90,9 @@ public final class RandomEvents extends JavaPlugin {
                 }else if (i == 12 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getRandomProjectilesMinPlayers()) {
                     RandomProjectiles.start();
                     getLogger().info("Event: Starting Random Projectiles Event");
+                }else if (i == 13 && Bukkit.getOnlinePlayers().size() >= EventsAPI.getDoubleOreMinPlayers()) {
+                    DoubleOre.activateDoubleOre();
+                    getLogger().info("Event: Starting Double Ore Event");
                 }
             }
         }.runTaskTimer(this, 0L, 20 * 600);

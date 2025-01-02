@@ -92,4 +92,12 @@ public class EventsAPI {
     public static int getRandomProjectilesTime() {
         return RandomEvents.getPlugin().getConfig().getInt("RandomProjectiles.Time");
     }
+
+    public static int getDoubleOreMinPlayers() {
+        return RandomEvents.getPlugin().getConfig().getInt("DoubleOre.Min-Players");
+    }
+
+    public static int getDoubleOreDuration() {
+        return RandomEvents.getPlugin().getConfig().getInt("DoubleOre.Duration");
+    }
 }

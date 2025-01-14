@@ -1,7 +1,7 @@
 Treasure Hunt:
   Min-Players: 3
   Max-Attempts: 50
-  Spawn-Radius: 500
+  Spawn-Radius: 1000
 Ability Boost:
   Min-Players: 2
   Duration: 300
@@ -33,7 +33,7 @@ TaskEvent:
 LootLama:
   Min-Players: 2
   Amount: 3
-  Spawn-Chance: 0.3
+  Spawn-Chance: 0.4
 RandomProjectiles:
   Min-Players: 3
   Time: 5

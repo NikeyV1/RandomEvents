@@ -50,7 +50,7 @@ public class LootLama implements Listener {
                 if (world == null)return;
 
                 for (Player player : world.getPlayers()) {
-                    if (random.nextDouble() <= 0.3) {
+                    if (random.nextDouble() <= EventsAPI.getLootLamaChance()) {
                         spawnLootLlamaNearPlayer(player);
                     }
                 }
@@ -78,8 +78,8 @@ public class LootLama implements Listener {
     private static void spawnLootLlamaNearPlayer(Player player) {
         Random random = new Random();
         World world = player.getWorld();
-        double x = player.getLocation().getX() + random.nextInt(251) - 150;
-        double z = player.getLocation().getZ() + random.nextInt(251) - 150;
+        double x = player.getLocation().getX() + random.nextInt(151) - 50;
+        double z = player.getLocation().getZ() + random.nextInt(151) - 50;
         double y = world.getHighestBlockYAt((int) x, (int) z) + 1;
 
         Location location = new Location(world, x, y, z);

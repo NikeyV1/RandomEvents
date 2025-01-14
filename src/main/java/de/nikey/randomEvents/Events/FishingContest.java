@@ -16,6 +16,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
+import static de.nikey.randomEvents.API.GeneralAPI.randomAmount;
+
 public class FishingContest implements Listener {
 
     public static void startFishingContest() {
@@ -23,7 +25,7 @@ public class FishingContest implements Listener {
         if (Bukkit.getOnlinePlayers().size() < EventsAPI.getFishingContestMinPlayer())return;
 
         FishingAPI.isFishingContestActive = true;
-        Bukkit.broadcast(Component.text("The Fishing Contest has started! Catch as many rare fish and treasures as you can!", NamedTextColor.GOLD));
+        Bukkit.broadcast(Component.text("The Fishing Contest has started! Catch as many rare treasures as you can!", NamedTextColor.GOLD));
         for (Player players : Bukkit.getOnlinePlayers()) {
             players.playSound(players, Sound.ENTITY_EXPERIENCE_ORB_PICKUP,1,1);
         }
@@ -55,33 +57,25 @@ public class FishingContest implements Listener {
         // Loot-Listen (Material, Menge, Chance)
         List<Material> lootMaterials = Arrays.asList(
                 Material.DIAMOND_BLOCK,
-                Material.DIAMOND_BLOCK,
-                Material.EMERALD_BLOCK,
-                Material.EMERALD_BLOCK,
                 Material.EMERALD_BLOCK,
                 Material.GOLD_BLOCK,
-                Material.GOLD_BLOCK,
+                Material.IRON_BLOCK,
                 Material.TRIDENT,
                 Material.HEAVY_CORE,
                 Material.TOTEM_OF_UNDYING,
                 Material.ELYTRA,
                 Material.SHULKER_SHELL,
-                Material.SHULKER_SHELL,
-                Material.ENDER_PEARL,
-                Material.ENDER_PEARL,
-                Material.ECHO_SHARD,
                 Material.ECHO_SHARD,
                 Material.NETHER_STAR,
                 Material.EXPERIENCE_BOTTLE,
-                Material.EXPERIENCE_BOTTLE,
                 Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
-                Material.IRON_BLOCK,
-                Material.IRON_BLOCK,
-                Material.ANCIENT_DEBRIS
+                Material.ANCIENT_DEBRIS,
+                Material.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE
         );
 
-        List<Integer> lootAmounts = Arrays.asList(1,2,1,2,3,1,2,1,1,1,1,1,1,16,14,2,3,1,8,10,1,2,3,1);
-        List<Double> lootChances = Arrays.asList(0.05,0.02,0.05,0.05,0.03,0.05,0.05,0.01,0.01,0.03,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.01,0.05,0.05,0.04,0.05,0.05,0.05);
+        List<Integer> lootAmounts = Arrays.asList(randomAmount(1, 5),randomAmount(3,7),randomAmount(2, 5), randomAmount(4,8), 1, 1, 1,1,randomAmount(1,3)
+                ,randomAmount(1,4),1, randomAmount(12,32),1,randomAmount(1,4),1);
+        List<Double> lootChances = Arrays.asList(0.075,0.075,0.075,0.075,0.05,0.05,0.075,0.075,0.075,0.075,0.1,0.05,0.08,0.05,0.02);
 
         Random random = new Random();
         double totalWeight = lootChances.stream().mapToDouble(Double::doubleValue).sum();

@@ -34,7 +34,6 @@ public class FFA {
 
             @Override
             public void run() {
-                // Countdown-Benachrichtigung nur bei spezifischen Zeiten senden
                 if (timeLeft == 30 || timeLeft == 10 || timeLeft == 5 || timeLeft == 3) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         FFA_API.invited.add(player);
@@ -80,6 +79,8 @@ public class FFA {
 
 
         for (Player player : FFA_API.queue) {
+            if (!player.isOnline()) continue;
+
             if (FFA_API.location.containsKey(player.getName()) || FFA_API.playerItems.containsKey(player.getName())) {
                 TextComponent message = Component.text("An Error occurred: Already ingame");
                 TextComponent m = Component.text("Please contact an admin");
@@ -118,12 +119,10 @@ public class FFA {
     }
 
     private static void addEquipment(Player player) {
-        // Diamanthelm mit Verzauberungen
         ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
         helmet.addEnchantment(Enchantment.PROTECTION, 4);
         helmet.addEnchantment(Enchantment.UNBREAKING, 3);
 
-        // Diamantbrustplatte mit Verzauberungen
         ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
         chestplate.addEnchantment(Enchantment.PROTECTION, 4);
         chestplate.addEnchantment(Enchantment.UNBREAKING, 3);
@@ -145,7 +144,7 @@ public class FFA {
         sword.addEnchantment(Enchantment.SWEEPING_EDGE, 3);
 
         //Essen
-        ItemStack food = new ItemStack(Material.COOKED_BEEF);
+        ItemStack food = new ItemStack(Material.GOLDEN_APPLE);
 
         // Spieler die Ausrüstung geben
         player.getInventory().setHelmet(helmet);

@@ -85,6 +85,10 @@ public class EventsAPI {
         return RandomEvents.getPlugin().getConfig().getInt("LootLama.Amount");
     }
 
+    public static double getLootLamaChance() {
+        return RandomEvents.getPlugin().getConfig().getDouble("LootLama.Spawn-Chance",0.3);
+    }
+
     public static int getRandomProjectilesMinPlayers() {
         return RandomEvents.getPlugin().getConfig().getInt("RandomProjectiles.Min-Players");
     }

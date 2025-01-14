@@ -42,6 +42,7 @@ public class RandomProjectiles implements Listener {
         projectileTypes.add(EntityType.TRIDENT);
         projectileTypes.add(EntityType.LLAMA_SPIT);
         projectileTypes.add(EntityType.WITHER_SKULL);
+        projectileTypes.add(EntityType.FIREWORK_ROCKET);
 
         new BukkitRunnable() {
             @Override

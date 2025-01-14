@@ -19,7 +19,7 @@ FFA:
     - "-19,-60,6"
     - "-4,-60,7"
 FishingContest:
-  Time: 5
+  Time: 10
   Min-Players: 4
   Drop-Chance: 5
 TaskEvent:
@@ -33,10 +33,10 @@ TaskEvent:
 LootLama:
   Min-Players: 2
   Amount: 3
+  Spawn-Chance: 0.3
 RandomProjectiles:
   Min-Players: 3
   Time: 5
 DoubleOre:
   Min-Players: 2
   Duration: 5
-

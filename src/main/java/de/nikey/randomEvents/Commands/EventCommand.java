@@ -42,6 +42,7 @@ public class EventCommand implements CommandExecutor {
                         Player player = Bukkit.getPlayer(args[2]);
                         assert player != null;
                         player.getInventory().setContents(FFA_API.playerItems.get(player.getName()));
+                        return true;
                     }
                     FFA.sendInvite();
                 }else if (args[0].equalsIgnoreCase("FishingContest")) {
